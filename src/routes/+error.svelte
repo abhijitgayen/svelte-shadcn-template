@@ -2,13 +2,12 @@
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import { SEO } from '#lib/components/seo/index.js';
-
-	const goHome = () => goto('/');
-	const goBack = () => history.back();
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { ArrowLeft, ArrowRight, Compass, Sparkles } from '@lucide/svelte';
 
 	const isNotFound = $derived(page.status === 404);
 	const errorTitle = $derived(
-		`${page.status} - ${isNotFound ? 'Page Not Found' : 'Application Error'}`
+		`${page.status} — ${isNotFound ? 'Page not found' : 'Something went wrong'}`
 	);
 </script>
 
@@ -19,68 +18,59 @@
 	nofollow={true}
 />
 
-<div
-	class="bg-background text-foreground flex min-h-screen items-center justify-center px-6 py-12"
+<main
+	class="animate-enter relative isolate flex min-h-screen items-center justify-center overflow-hidden bg-background px-5 py-16 text-foreground"
 >
-	<div class="w-full max-w-md text-center">
-		<!-- Error Icon -->
-		<div
-			class="bg-destructive/10 text-destructive mx-auto mb-6 flex size-20 items-center justify-center rounded-2xl"
+	<div
+		class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-160 bg-[radial-gradient(ellipse_at_top,var(--color-secondary),transparent_68%)]"
+	></div>
+	<div class="w-full max-w-xl text-center">
+		<a href="/" class="mx-auto mb-14 inline-flex items-center gap-2.5 font-semibold tracking-tight"
+			><span class="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground"
+				><Sparkles class="size-4" /></span
+			>launchkit</a
 		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="40"
-				height="40"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="1.8"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			>
-				<circle cx="12" cy="12" r="10" />
-				<path d="M12 8v4" />
-				<path d="M12 16h.01" />
-			</svg>
+		<div
+			class="mx-auto grid size-20 place-items-center rounded-3xl border border-border bg-card text-muted-foreground shadow-sm"
+		>
+			<Compass class="size-9" />
 		</div>
-
-		<!-- Status -->
-		<p class="text-primary mb-3 text-sm font-semibold uppercase tracking-[0.2em]">
+		<p class="mt-8 text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase">
 			Error {page.status}
 		</p>
-
-		<!-- Heading -->
-		<h1 class="text-3xl font-bold tracking-tight sm:text-4xl">
-			{isNotFound ? 'Page not found' : 'Something went wrong'}
+		<h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+			{isNotFound ? 'This page wandered off.' : 'A little detour.'}
 		</h1>
-
-		<!-- Description -->
-		<p class="text-muted-foreground mx-auto mt-4 max-w-sm text-sm leading-7">
+		<p class="mx-auto mt-4 max-w-md leading-7 text-muted-foreground">
 			{isNotFound
-				? "Sorry, we couldn't find the page you're looking for. It may have been moved or deleted."
-				: 'An unexpected error occurred. Please try again or return to the home page.'}
+				? 'We can’t find the page you’re looking for. It may have moved, or the link might be out of date.'
+				: 'Something unexpected happened while loading this page. Try again, or head back to the start.'}
 		</p>
-
-		<!-- Actions -->
-		<div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-			<button
-				onclick={goHome}
-				class="bg-primary text-primary-foreground focus-visible:ring-ring focus-visible:ring-offset-background rounded-xl px-6 py-3 text-sm font-semibold shadow-sm transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+		<div class="mt-8 flex flex-col justify-center gap-3 min-[420px]:flex-row">
+			<Button onclick={() => goto('/')} size="lg" class="h-11 rounded-xl px-5"
+				>Back to home <ArrowRight class="size-4" /></Button
+			><Button
+				onclick={() => history.back()}
+				variant="outline"
+				size="lg"
+				class="h-11 rounded-xl px-5"><ArrowLeft class="size-4" /> Go back</Button
 			>
-				Go to Home
-			</button>
-
-			<button
-				onclick={goBack}
-				class="border-border bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background rounded-xl border px-6 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-			>
-				Go Back
-			</button>
 		</div>
-
-		<!-- Footer -->
-		<p class="text-muted-foreground mt-12 text-xs">
-			SvelteKit shadcn Starter · Error {page.status}
+		<p class="mt-12 text-xs text-muted-foreground">
+			Need a fresh start? <a
+				href="/"
+				class="font-medium text-foreground underline-offset-4 hover:underline"
+				>Return to launchkit</a
+			>
 		</p>
+		<nav
+			class="mt-6 flex items-center justify-center gap-5 text-xs text-muted-foreground"
+			aria-label="More pages"
+		>
+			<a class="hover:text-foreground" href="/hero">Demo</a><a
+				class="hover:text-foreground"
+				href="/components">Components</a
+			><a class="hover:text-foreground" href="/getting-started">Guide</a>
+		</nav>
 	</div>
-</div>
+</main>

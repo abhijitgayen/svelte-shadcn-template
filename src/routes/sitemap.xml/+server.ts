@@ -20,6 +20,16 @@ const routes: SitemapRoute[] = [
 		path: '/hero',
 		priority: '0.8',
 		changefreq: 'monthly'
+	},
+	{
+		path: '/getting-started',
+		priority: '0.8',
+		changefreq: 'monthly'
+	},
+	{
+		path: '/components',
+		priority: '0.8',
+		changefreq: 'monthly'
 	}
 ];
 
