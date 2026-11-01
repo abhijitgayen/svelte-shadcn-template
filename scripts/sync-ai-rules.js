@@ -9,11 +9,13 @@
  * - CLAUDE.md (Claude Code CLI & Anthropic)
  * - .github/copilot-instructions.md (GitHub Copilot)
  * - .windsurfrules (Windsurf IDE)
- * - .rules & .zed/prompts/rules.md (Zed Editor & Assistant)
  * - skills/sveltekit-shadcn/SKILL.md (Antigravity / Agent Skills runtime)
  *
  * It embeds the FULL master guidelines from AGENTS.md into each file
  * ensuring 100% rule parity across every AI assistant without manual duplication.
+ *
+ * Note: Zed editor natively reads AGENTS.md directly, so no extra duplicate
+ * files (.rules or .zed/) are required.
  */
 
 import fs from 'node:fs';
@@ -107,23 +109,7 @@ ${agentsContent}
 	fs.writeFileSync(path.join(rootDir, '.windsurfrules'), windsurfContent.trim() + '\n', 'utf-8');
 	console.log('  ✓ Updated .windsurfrules');
 
-	// 6. Sync Zed Editor (.rules and .zed/prompts/rules.md)
-	const zedContent = `# Zed Assistant Rules: SvelteKit + shadcn-svelte
-# Automatically synchronized from AGENTS.md - DO NOT EDIT DIRECTLY
-
-${agentsContent}
-`;
-	fs.writeFileSync(path.join(rootDir, '.rules'), zedContent.trim() + '\n', 'utf-8');
-	console.log('  ✓ Updated .rules (Zed & universal)');
-
-	const zedPromptsDir = path.join(rootDir, '.zed', 'prompts');
-	if (!fs.existsSync(zedPromptsDir)) {
-		fs.mkdirSync(zedPromptsDir, { recursive: true });
-	}
-	fs.writeFileSync(path.join(zedPromptsDir, 'rules.md'), zedContent.trim() + '\n', 'utf-8');
-	console.log('  ✓ Updated .zed/prompts/rules.md (Zed prompt template)');
-
-	// 7. Sync skills/sveltekit-shadcn/SKILL.md
+	// 6. Sync skills/sveltekit-shadcn/SKILL.md
 	const skillDir = path.join(rootDir, 'skills', 'sveltekit-shadcn');
 	if (fs.existsSync(skillDir)) {
 		const skillPath = path.join(skillDir, 'SKILL.md');
@@ -139,7 +125,7 @@ metadata:
 		console.log('  ✓ Updated skills/sveltekit-shadcn/SKILL.md');
 	}
 
-	console.log('✨ All AI tools (including Zed) are 100% in sync with AGENTS.md!\n');
+	console.log('✨ All AI tools are 100% in sync with AGENTS.md!\n');
 }
 
 // Initial sync
