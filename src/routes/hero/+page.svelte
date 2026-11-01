@@ -1,9 +1,11 @@
 <script lang="ts">
+	import SiteHeader from '#lib/components/site-header.svelte';
+	import SiteFooter from '#lib/components/site-footer.svelte';
+
 	import { SEO } from '#lib/components/seo/index.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Badge } from '#lib/components/ui/badge/index.js';
-	import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Moon, Sparkles } from '@lucide/svelte';
-	import { toggleMode } from 'mode-watcher';
+	import { ArrowRight, ArrowUpRight, Check, Sparkles } from '@lucide/svelte';
 </script>
 
 <SEO
@@ -16,31 +18,7 @@
 	<div
 		class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-160 bg-[radial-gradient(ellipse_at_top,var(--color-secondary),transparent_68%)]"
 	></div>
-	<header
-		class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-3 px-5 py-5 sm:px-8"
-	>
-		<a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight"
-			><span class="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground"
-				><Sparkles class="size-4" /></span
-			>launch<span class="-ml-2 text-muted-foreground">kit</span></a
-		>
-		<nav
-			class="order-3 flex w-full items-center justify-center gap-5 border-t border-border/60 pt-3 text-xs text-muted-foreground sm:order-none sm:w-auto sm:border-0 sm:pt-0 sm:text-sm"
-			aria-label="Main navigation"
-		>
-			<a class="hover:text-foreground" href="/hero" aria-current="page">Demo</a><a
-				class="hover:text-foreground"
-				href="/components">Components</a
-			><a class="hover:text-foreground" href="/getting-started">Guide</a>
-		</nav>
-		<div class="flex items-center gap-2">
-			<Button variant="ghost" size="icon" onclick={toggleMode} aria-label="Toggle color theme"
-				><Moon class="size-4" /></Button
-			><Button href="/" variant="outline" size="sm"
-				><ArrowLeft class="size-4" /> Back to home</Button
-			>
-		</div>
-	</header>
+	<SiteHeader />
 
 	<main class="animate-enter">
 		<section
@@ -150,13 +128,5 @@
 			</div>
 		</section>
 	</main>
-	<footer
-		class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:px-8"
-	>
-		<a href="/" class="font-medium text-foreground">launchkit</a><span
-			>Example landing page · Make it yours</span
-		><a href="/" class="hover:text-foreground"
-			>Back to the starter <ArrowRight class="ml-1 inline size-3.5" /></a
-		>
-	</footer>
+	<SiteFooter />
 </div>

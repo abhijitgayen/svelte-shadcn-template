@@ -1,9 +1,16 @@
 {
 	"extends": "$app/tsconfig",
 	"compilerOptions": {
+		"baseUrl": ".",
+		"ignoreDeprecations": "6.0",
 		"rewriteRelativeImportExtensions": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"paths": {
+			"#lib": ["src/lib/index.js"],
+			"#lib/*": ["src/lib/*"],
+			"#components/*": ["src/lib/components/*"]
+		}
 	},
 	"include": ["src", "vite.config.ts"]
 }

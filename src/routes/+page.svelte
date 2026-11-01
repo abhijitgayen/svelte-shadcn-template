@@ -1,20 +1,12 @@
 <script lang="ts">
+	import SiteHeader from '#lib/components/site-header.svelte';
+	import SiteFooter from '#lib/components/site-footer.svelte';
+
 	import { SEO } from '#lib/components/seo/index.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Badge } from '#lib/components/ui/badge/index.js';
 	import * as Accordion from '#lib/components/ui/accordion/index.js';
-	import { toggleMode } from 'mode-watcher';
-	import {
-		ArrowRight,
-		ArrowUpRight,
-		Check,
-		Code2,
-		Layers3,
-		Moon,
-		Palette,
-		Sparkles,
-		Zap
-	} from '@lucide/svelte';
+	import { ArrowRight, ArrowUpRight, Check, Code2, Layers3, Palette, Zap } from '@lucide/svelte';
 </script>
 
 <SEO
@@ -37,41 +29,7 @@
 	<div
 		class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-160 bg-[radial-gradient(ellipse_at_top,var(--color-secondary),transparent_68%)] opacity-70"
 	></div>
-	<header class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
-		<a
-			href="/"
-			class="flex items-center gap-2.5 font-semibold tracking-tight"
-			aria-label="SvelteKit Starter home"
-		>
-			<span class="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground"
-				><Sparkles class="size-4" /></span
-			>
-			<span>launch<span class="text-muted-foreground">kit</span></span>
-		</a>
-		<nav
-			class="order-3 flex w-full flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-border/60 pt-3 text-xs text-muted-foreground md:order-none md:w-auto md:border-0 md:pt-0 md:text-sm"
-			aria-label="Main navigation"
-		>
-			<a class="transition-colors hover:text-foreground" href="/hero">Demo</a>
-			<a class="transition-colors hover:text-foreground" href="/components">Components</a>
-			<a class="transition-colors hover:text-foreground" href="/getting-started">Guide</a>
-			<a class="transition-colors hover:text-foreground" href="#features">Features</a>
-			<a class="transition-colors hover:text-foreground" href="#stack">Tech stack</a>
-			<a class="transition-colors hover:text-foreground" href="#faq">FAQ</a>
-		</nav>
-		<div class="flex items-center gap-2">
-			<Button variant="ghost" size="icon" onclick={toggleMode} aria-label="Toggle color theme"
-				><Moon class="size-4" /></Button
-			>
-			<Button
-				href="https://github.com/abhijitgayen/svelte-shadcn-template"
-				target="_blank"
-				rel="noreferrer"
-				size="sm"
-				class="hidden sm:inline-flex">View on GitHub <ArrowUpRight class="size-4" /></Button
-			>
-		</div>
-	</header>
+	<SiteHeader />
 
 	<main class="animate-enter">
 		<section
@@ -350,24 +308,5 @@
 		</section>
 	</main>
 
-	<footer
-		class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:px-8"
-	>
-		<a href="/" class="flex items-center gap-2 font-medium text-foreground"
-			><span class="grid size-7 place-items-center rounded-lg bg-primary text-primary-foreground"
-				><Sparkles class="size-3.5" /></span
-			>launchkit</a
-		>
-		<p>Made for the things you’re about to make.</p>
-		<div class="flex items-center gap-4">
-			<a class="transition-colors hover:text-foreground" href="/getting-started">Getting started</a>
-			<a class="transition-colors hover:text-foreground" href="/components">Components</a>
-		</div>
-		<a
-			class="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
-			href="https://github.com/abhijitgayen/svelte-shadcn-template"
-			target="_blank"
-			rel="noreferrer">Open source on GitHub <ArrowUpRight class="size-3.5" /></a
-		>
-	</footer>
+	<SiteFooter />
 </div>

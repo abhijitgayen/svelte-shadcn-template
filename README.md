@@ -28,10 +28,11 @@ A production-ready starter template featuring **Svelte 5 (Runes)**, **SvelteKit 
   - Static prerendered **XML Sitemap** (`/sitemap.xml`) and search-engine compliant `robots.txt`.
   - Modern web app manifest (`site.webmanifest`) and responsive theme-color meta tags.
   - Pre-designed, high-resolution Open Graph social preview template (`static/og.svg`).
-- 🎨 **shadcn-svelte & Bits UI v2**: Fully accessible, unstyled primitives beautifully styled with Tailwind CSS and Tailwind Variants.
+- 🎨 **shadcn-svelte & Bits UI v2**: Fully accessible, composable primitives from [shadcn-svelte](https://shadcn-svelte.com), beautifully styled with Tailwind CSS and Tailwind Variants.
+- 🧪 **Dynamic Component Playground**: Visit [`/components`](src/routes/components/+page.svelte) to interactively switch between the included components and browse the full shadcn-svelte catalog.
 - 🌈 **Tailwind CSS v4**: Ultra-fast, CSS-first architecture configured with `@tailwindcss/vite`, modern OKLCH theme colors, and CSS variables.
 - 🌙 **Seamless Dark Mode**: Zero-flicker light/dark theme switching configured out of the box via [`mode-watcher`](https://github.com/svecosystem/mode-watcher).
-- 🧩 **Pre-installed Components**: Includes sample components (`button`, `accordion`, `badge`) and starter demo pages (`/` and `/hero`).
+- 🧩 **Pre-installed Components**: Includes `button`, `accordion`, `badge`, `alert`, and `alert-dialog`, plus starter demo pages (`/`, `/hero`, and `/components`).
 - 💎 **Lucide Icons**: Ready-to-use vector icons from [`@lucide/svelte`](https://lucide.dev).
 - 🚀 **Static Site Ready**: Pre-configured with [`@sveltejs/adapter-static`](https://svelte.dev/docs/kit/adapter-static) for easy deployment to GitHub Pages, Cloudflare Pages, Netlify, or Vercel.
 - 🛠️ **Developer Experience**:
@@ -292,6 +293,66 @@ pnpm dlx shadcn-svelte@latest add input card
 ```
 
 Components are placed directly into `src/lib/components/ui/<component>/`, giving you complete control to inspect and customize their code.
+
+### Accordion, Alert, and Alert Dialog
+
+The starter includes Accordion for expandable content, Alert for inline status messages, and Alert Dialog for modal confirmations. Add or refresh them with the CLI:
+
+```sh
+pnpm dlx shadcn-svelte@latest add accordion alert alert-dialog
+```
+
+Use the compound component APIs from the local `index.js` modules:
+
+```svelte
+<script lang="ts">
+	import * as Accordion from '#lib/components/ui/accordion/index.js';
+	import * as Alert from '#lib/components/ui/alert/index.js';
+	import * as AlertDialog from '#lib/components/ui/alert-dialog/index.js';
+	import { buttonVariants } from '#lib/components/ui/button/index.js';
+</script>
+
+<Accordion.Root type="single">
+	<Accordion.Item value="details">
+		<Accordion.Trigger>Show details</Accordion.Trigger>
+		<Accordion.Content>Expandable content goes here.</Accordion.Content>
+	</Accordion.Item>
+</Accordion.Root>
+
+<Alert.Root>
+	<Alert.Title>Saved</Alert.Title>
+	<Alert.Description>Your changes have been saved.</Alert.Description>
+</Alert.Root>
+
+<AlertDialog.Root>
+	<AlertDialog.Trigger class={buttonVariants({ variant: 'outline' })}>
+		Delete project
+	</AlertDialog.Trigger>
+	<AlertDialog.Content>
+		<AlertDialog.Header>
+			<AlertDialog.Title>Delete this project?</AlertDialog.Title>
+			<AlertDialog.Description>This action cannot be undone.</AlertDialog.Description>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+			<AlertDialog.Action>Delete</AlertDialog.Action>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>
+```
+
+An **Alert** is a persistent inline callout. An **Alert Dialog** is modal and asks the user to confirm or cancel an important action. See the official [Accordion](https://shadcn-svelte.com/docs/components/accordion), [Alert](https://shadcn-svelte.com/docs/components/alert), and [Alert Dialog](https://shadcn-svelte.com/docs/components/alert-dialog) docs for their APIs and examples. The interactive examples are also available on the [`/components` page](src/routes/components/+page.svelte).
+
+### How the component playground works
+
+The `/components` route keeps a small typed catalog of the components installed in this repository. Selecting a component updates the live preview with Svelte 5 state, so the page is easy to extend when you add another primitive:
+
+1. Add the component with `pnpm dlx shadcn-svelte@latest add <component>`.
+2. Import its local `#lib/components/ui/<component>/index.js` module.
+3. Add its name and description to `componentCatalog` in `src/routes/components/+page.svelte`.
+4. Add a preview branch for its interactive example.
+
+This keeps the starter examples local and editable while the official [shadcn-svelte component catalog](https://shadcn-svelte.com/components) remains the source for the complete library and API documentation.
 
 ### Importing Components
 

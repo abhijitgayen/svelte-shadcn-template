@@ -1,8 +1,11 @@
 <script lang="ts">
+	import SiteHeader from '#lib/components/site-header.svelte';
+	import SiteFooter from '#lib/components/site-footer.svelte';
+
 	import { SEO } from '#lib/components/seo/index.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Badge } from '#lib/components/ui/badge/index.js';
-	import { ArrowLeft, ArrowRight, Check, ExternalLink, Sparkles } from '@lucide/svelte';
+	import { ArrowRight, Check, ExternalLink } from '@lucide/svelte';
 
 	const steps = [
 		{
@@ -33,25 +36,7 @@
 />
 
 <div class="min-h-screen bg-background text-foreground">
-	<header
-		class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-y-3 px-5 py-5 sm:px-8"
-	>
-		<a href="/" class="flex items-center gap-2.5 font-semibold"
-			><span class="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground"
-				><Sparkles class="size-4" /></span
-			>launchkit</a
-		>
-		<nav
-			class="order-3 flex w-full items-center justify-center gap-5 border-t border-border/60 pt-3 text-xs text-muted-foreground sm:order-none sm:w-auto sm:border-0 sm:pt-0 sm:text-sm"
-			aria-label="Main navigation"
-		>
-			<a class="hover:text-foreground" href="/hero">Demo</a><a
-				class="hover:text-foreground"
-				href="/components">Components</a
-			><a class="hover:text-foreground" href="/getting-started" aria-current="page">Guide</a>
-		</nav>
-		<Button href="/" variant="ghost" size="sm"><ArrowLeft class="size-4" /> Home</Button>
-	</header>
+	<SiteHeader />
 	<main class="animate-enter mx-auto max-w-5xl px-5 pt-12 pb-20 sm:px-8 md:pt-20">
 		<Badge variant="outline" class="gap-2"
 			><span class="size-1.5 rounded-full bg-chart-2"></span> Quick start</Badge
@@ -112,4 +97,5 @@
 			</div>
 		</section>
 	</main>
+	<SiteFooter />
 </div>
