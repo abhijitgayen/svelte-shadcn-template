@@ -21,7 +21,7 @@ export const siteConfig = {
 		'Starter'
 	],
 	links: {
-		github: 'https://github.com/your-username/svelte-shadcn-template',
+		github: 'https://github.com/abhijitgayen/svelte-shadcn-template',
 		twitter: 'https://twitter.com/sveltejs'
 	}
 };

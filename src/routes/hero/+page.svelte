@@ -52,7 +52,7 @@
 	</p>
 
 	<div class="mt-4 flex flex-col justify-center gap-4 min-[400px]:flex-row">
-		<a href="https://github.com/your-username/svelte-shadcn-template" target="_blank" rel="noreferrer">
+		<a href="https://github.com/abhijitgayen/svelte-shadcn-template" target="_blank" rel="noreferrer">
 			<Button size="lg" class="gap-2">
 				Get Started <ArrowRight class="size-4" />
 			</Button>

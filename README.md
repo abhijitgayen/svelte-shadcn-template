@@ -120,7 +120,7 @@ Ensure you have [Node.js](https://nodejs.org/) (v18.x or v20+ recommended) and [
 ### 1. Clone or Use This Template
 
 ```sh
-git clone https://github.com/<your-username>/<your-repo-name>.git my-project
+git clone https://github.com/abhijitgayen/svelte-shadcn-template.git my-project
 cd my-project
 ```
 
