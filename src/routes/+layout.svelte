@@ -1,11 +1,11 @@
 <script lang="ts">
 	import '../globale.css';
-	import favicon from '#lib/assets/favicon.svg';
 	import { ModeWatcher } from 'mode-watcher';
+	import { SEO } from '#lib/components/seo/index.js';
 
 	let { children } = $props();
 </script>
 
+<SEO />
 <ModeWatcher />
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
 {@render children()}

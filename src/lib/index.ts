@@ -1,1 +1,2 @@
-// place files you want to import through the `#lib` alias in this folder.
+export { siteConfig } from './config/site.js';
+export { SEO } from './components/seo/index.js';

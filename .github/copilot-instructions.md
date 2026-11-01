@@ -1,0 +1,97 @@
+# GitHub Copilot Instructions
+# Automatically synchronized from AGENTS.md - DO NOT EDIT DIRECTLY
+
+# AI Agent Guidelines: SvelteKit 3 + Svelte 5 + shadcn-svelte
+
+Welcome AI Agent. This repository is a production-grade template using **SvelteKit 3**, **Svelte 5 (Runes)**, **Tailwind CSS v4**, and **shadcn-svelte** (Bits UI v2). Follow these exact guidelines to build features quickly and accurately.
+
+---
+
+## ⚡ Quick CLI Commands
+
+- **Start dev server**: `pnpm dev`
+- **Type check**: `pnpm check`
+- **Lint & Format**: `pnpm lint` / `pnpm format`
+- **Production build**: `pnpm build`
+- **Add a shadcn-svelte component**: `pnpm dlx shadcn-svelte@latest add <component>`
+- **Scaffold a new route**: `pnpm create:page <route-name> "<Page Title>"`
+
+---
+
+## 🛑 Strict Rules (Never Break These)
+
+1. **Svelte 5 Runes Only**:
+   - ❌ NEVER use `export let prop = '...'` -> ✅ `let { prop = '...' }: Props = $props()`
+   - ❌ NEVER use `let count = 0; count++` -> ✅ `let count = $state(0); count++`
+   - ❌ NEVER use `$: doubled = count * 2` -> ✅ `const doubled = $derived(count * 2)`
+   - ❌ NEVER use `$: { ... }` -> ✅ `$effect(() => { ... })`
+   - ❌ NEVER use `<slot />` -> ✅ `Snippet` and `{@render children?.()}`
+   - ❌ NEVER use `on:click={...}` -> ✅ `onclick={...}`
+
+2. **Tailwind CSS v4 Rules**:
+   - ❌ NEVER create `tailwind.config.js` or `tailwind.config.ts`.
+   - Global CSS and theme tokens are in `src/globale.css` using `@import "tailwindcss";`.
+   - Use semantic design tokens: `bg-background`, `text-foreground`, `bg-primary`, `text-primary-foreground`, `bg-secondary`, `bg-muted`, `border-border`.
+   - Always merge conditional classes with `cn(...)` from `#lib/utils.js`.
+
+3. **SEO & Sitemap Rules**:
+   - Every public page MUST include `<SEO title="..." description="..." />` imported from `#lib/components/seo/index.js`.
+   - Every new public route MUST be added to `routes` in `src/routes/sitemap.xml/+server.ts`.
+   - Error and private pages must specify `<SEO noindex={true} nofollow={true} />`.
+
+4. **Import Aliases**:
+   - `#lib/*` -> `src/lib/*`
+   - `#components/*` -> `src/lib/components/*`
+   - `$lib/*` -> `src/lib/*`
+
+---
+
+## 🧩 Copy-Paste Snippets
+
+### Standard Component (`src/lib/components/...`)
+```svelte
+<script lang="ts">
+  import type { Snippet } from 'svelte';
+  import type { HTMLAttributes } from 'svelte/elements';
+  import { cn } from '#lib/utils.js';
+
+  interface Props extends HTMLAttributes<HTMLDivElement> {
+    title: string;
+    description?: string;
+    children?: Snippet;
+  }
+
+  let { title, description, class: className, children, ...restProps }: Props = $props();
+</script>
+
+<div class={cn('rounded-xl border border-border bg-card p-6 text-card-foreground', className)} {...restProps}>
+  <h3 class="text-lg font-semibold">{title}</h3>
+  {#if description}
+    <p class="text-sm text-muted-foreground">{description}</p>
+  {/if}
+  {#if children}
+    <div class="mt-4">
+      {@render children()}
+    </div>
+  {/if}
+</div>
+```
+
+### Standard Route (`src/routes/<path>/+page.svelte`)
+```svelte
+<script lang="ts">
+  import { SEO } from '#lib/components/seo/index.js';
+  import { Button } from '#lib/components/ui/button/index.js';
+</script>
+
+<SEO
+  title="Page Title"
+  description="High-converting description for search engines."
+  keywords={['keyword1', 'keyword2']}
+/>
+
+<main class="mx-auto max-w-5xl px-6 py-12">
+  <h1 class="text-3xl font-bold tracking-tight">Page Title</h1>
+  <p class="mt-2 text-muted-foreground">Page subtitle or description.</p>
+</main>
+```

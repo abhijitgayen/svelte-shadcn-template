@@ -1,0 +1,16 @@
+{
+	"name": "SvelteKit shadcn Starter",
+	"short_name": "SvelteKit Starter",
+	"description": "Production-ready starter template featuring Svelte 5, SvelteKit 3, Tailwind CSS v4, and shadcn-svelte.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#09090b",
+	"icons": [
+		{
+			"src": "/favicon.svg",
+			"sizes": "any",
+			"type": "image/svg+xml"
+		}
+	]
+}
