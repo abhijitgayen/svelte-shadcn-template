@@ -38,7 +38,7 @@
 
 <div class="min-h-screen bg-background text-foreground">
 	<SiteHeader />
-	<main class="animate-enter mx-auto max-w-6xl px-5 pt-12 pb-20 sm:px-8 md:pt-20">
+	<main class="animate-enter mx-auto max-w-7xl px-5 pt-12 pb-20 sm:px-8 md:pt-20">
 		<Badge variant="outline" class="gap-2"
 			><span class="size-1.5 rounded-full bg-chart-1"></span> Component playground</Badge
 		>
