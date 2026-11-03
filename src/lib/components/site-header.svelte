@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { Button } from '#lib/components/ui/button/index.js';
-	import { ArrowUpRight, Moon, Sparkles } from '@lucide/svelte';
+	import BrandLogo from '#lib/components/brand-logo.svelte';
+	import { ArrowUpRight, Moon } from '@lucide/svelte';
 	import { toggleMode } from 'mode-watcher';
 
 	const links = [
@@ -20,10 +21,7 @@
 		class="flex items-center gap-2.5 font-semibold tracking-tight"
 		aria-label="Launchkit home"
 	>
-		<span class="grid size-9 place-items-center rounded-xl bg-primary text-primary-foreground"
-			><Sparkles class="size-4" /></span
-		>
-		<span>launch<span class="text-muted-foreground">kit</span></span>
+		<BrandLogo />
 	</a>
 
 	<nav

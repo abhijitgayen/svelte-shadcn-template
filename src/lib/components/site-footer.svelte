@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { ArrowUpRight, Sparkles } from '@lucide/svelte';
+	import BrandLogo from '#lib/components/brand-logo.svelte';
+	import { ArrowUpRight } from '@lucide/svelte';
 </script>
 
 <footer
@@ -10,10 +11,8 @@
 		class="flex items-center gap-2 font-medium text-foreground"
 		aria-label="Launchkit home"
 	>
-		<span class="grid size-7 place-items-center rounded-lg bg-primary text-primary-foreground"
-			><Sparkles class="size-3.5" /></span
-		>
-		launchkit
+		<BrandLogo compact />
+		<span class="sr-only">launchkit</span>
 	</a>
 	<p>Made for the things you’re about to make.</p>
 	<nav
